@@ -19,15 +19,29 @@ namespace DatabaseFirst_Initial
                     new User("sa", "SuperSecretPassw0rd")
                 );
             Console.WriteLine(databaseService.ConnectionString);
-            // Create and open the connection in a using block. This
-            // ensures that all resources will be closed and disposed
-            // when the code exits.
+            
+            // CreateData
+            
+
+            // ReadData
+            ReadData(databaseService);
+            
+
+            // UpdateData
+            
+
+            // DeleteData
+
+        }
+
+        private static void ReadData(DatabaseService databaseService)
+        {
             using (SqlConnection connection = // using with resources takes care of closing the connection
-                new SqlConnection(databaseService.ConnectionString)) // connect (δημιουργώ ένα connection)
+                            new SqlConnection(databaseService.ConnectionString)) // connect (δημιουργώ ένα connection)
             {
                 // Create the Command and Parameter objects.
                 SqlCommand command = new SqlCommand(databaseService.Database.Query, connection); // new query window
-                
+
 
                 // Open the connection in a try/catch block.
                 // Create and execute the DataReader, writing the result
