@@ -21,7 +21,8 @@ namespace DatabaseFirst_Initial
             Console.WriteLine(databaseService.ConnectionString);
 
             // CreateData
-            CreateData(databaseService);
+            int id = CreateData(databaseService);
+            Console.WriteLine($"Created row with Id = {id}");
 
             // ReadData
             ReadData(databaseService);
@@ -33,23 +34,38 @@ namespace DatabaseFirst_Initial
             DeleteData(databaseService, 185);
         }
 
-        private static void CreateData(DatabaseService databaseService)
+        private static int CreateData(DatabaseService databaseService)
         {
+            int producedId = -1;
             using (SqlConnection sqlConnection = new SqlConnection(databaseService.ConnectionString))
             {
                 sqlConnection.Open();
                 String sqlQuery = $"INSERT INTO {databaseService.Database.Table}(Title, Description)" +
-                    $"VALUES(@title1, @description1),(@title2, @description2)";
+                    $"VALUES(@title1, @description1)"; //,(@title2, @description2)";
                 using (SqlCommand command = new SqlCommand(sqlQuery, sqlConnection))
                 {
                     command.Parameters.AddWithValue("@title1", "Jake");
                     command.Parameters.AddWithValue("@description1", "United States");
-                    command.Parameters.AddWithValue("@title2", "Jacob");
-                    command.Parameters.AddWithValue("@description2", "UAE");
+                    //command.Parameters.AddWithValue("@title2", "Jacob");
+                    //command.Parameters.AddWithValue("@description2", "UAE");
                     int rowsAffected = command.ExecuteNonQuery();
-                    Console.WriteLine(rowsAffected + " row(s) inserted");
                 }
+                using(SqlCommand command1 = new SqlCommand("SELECT @@IDENTITY", sqlConnection))
+                {
+                    //var obj = command1.ExecuteScalar(); //  row[0] reader[0]
+                    //producedId = Convert.ToInt32(obj);
+
+                    int.TryParse(command1.ExecuteScalar().ToString(), out producedId);
+
+                    /***
+                     * 
+                     * void Add(int i, int j, out int result) { result = i + j; }
+                     * 
+                     */
+                }
+
             }
+            return producedId;
         }
 
         private static void ReadData(DatabaseService databaseService)
