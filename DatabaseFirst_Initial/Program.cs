@@ -30,7 +30,7 @@ namespace DatabaseFirst_Initial
             //UpdateData(databaseService, 97, "Billy", "Billakos");
 
             // DeleteData
-            DeleteData(databaseService, 97);
+            DeleteData(databaseService, 98);
         }
 
         private static void CreateData(DatabaseService databaseService)
@@ -129,7 +129,26 @@ namespace DatabaseFirst_Initial
 
         private static void DeleteData(DatabaseService databaseService, int id)
         {
+            using (SqlConnection sqlConnection = new SqlConnection(databaseService.ConnectionString))
+            {
+                string sqlQuery = $"DELETE FROM {databaseService.Database.Table} WHERE Id = @id";
 
+                try
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@id", id);
+                        int rowsAffected = sqlCommand.ExecuteNonQuery();
+                        Console.WriteLine($"Deleted rows: {rowsAffected}");
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.HResult);
+                    Console.WriteLine(exception.Message);
+                }
+            }
         }
     }
 }
