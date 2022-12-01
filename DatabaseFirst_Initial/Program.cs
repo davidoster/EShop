@@ -19,19 +19,38 @@ namespace DatabaseFirst_Initial
                     new User("sa", "SuperSecretPassw0rd")
                 );
             Console.WriteLine(databaseService.ConnectionString);
-            
+
             // CreateData
-            
+            CreateData(databaseService);
 
             // ReadData
-            ReadData(databaseService);
-            
+            //ReadData(databaseService);
+
 
             // UpdateData
-            
+
 
             // DeleteData
 
+        }
+
+        private static void CreateData(DatabaseService databaseService)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(databaseService.ConnectionString))
+            {
+                sqlConnection.Open();
+                String sqlQuery = $"INSERT INTO {databaseService.Database.Table}(Title, Description)" +
+                    $"VALUES(@title1, @description1),(@title2, @description2)";
+                using (SqlCommand command = new SqlCommand(sqlQuery, sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@title1", "Jake");
+                    command.Parameters.AddWithValue("@description1", "United States");
+                    command.Parameters.AddWithValue("@title2", "Jacob");
+                    command.Parameters.AddWithValue("@description2", "UAE");
+                    int rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine(rowsAffected + " row(s) inserted");
+                }
+            }
         }
 
         private static void ReadData(DatabaseService databaseService)
