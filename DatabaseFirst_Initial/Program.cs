@@ -27,10 +27,10 @@ namespace DatabaseFirst_Initial
             //ReadData(databaseService);
 
             // UpdateData
-            UpdateData(databaseService, 97, "Billy", "Billakos");
+            //UpdateData(databaseService, 97, "Billy", "Billakos");
 
             // DeleteData
-
+            DeleteData(databaseService, 97);
         }
 
         private static void CreateData(DatabaseService databaseService)
@@ -125,6 +125,11 @@ namespace DatabaseFirst_Initial
             {
                 Console.WriteLine("title or description is needed");
             }
+        }
+
+        private static void DeleteData(DatabaseService databaseService, int id)
+        {
+
         }
     }
 }
