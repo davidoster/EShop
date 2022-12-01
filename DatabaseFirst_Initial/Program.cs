@@ -21,14 +21,13 @@ namespace DatabaseFirst_Initial
             Console.WriteLine(databaseService.ConnectionString);
 
             // CreateData
-            CreateData(databaseService);
+            //CreateData(databaseService);
 
             // ReadData
             //ReadData(databaseService);
 
-
             // UpdateData
-
+            UpdateData(databaseService, 97, "Billy", "Billakos");
 
             // DeleteData
 
@@ -83,6 +82,48 @@ namespace DatabaseFirst_Initial
                 }
                 Console.ReadLine();
                 connection.Close(); // is not needed because of using
+            }
+        }
+
+        private static void UpdateData(DatabaseService databaseService, int id, string title = null, string description = null)
+        {
+            if (title != null || description != null)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append($"UPDATE {databaseService.Database.Table}");
+                sb.Append(" SET ");
+                if (title != null)
+                {
+                    sb.Append("Title");
+                    sb.Append("='");
+                    sb.Append(title);
+                    sb.Append("'");
+                }
+                if (title != null && description != null)
+                {
+                    sb.Append(",");
+                }
+                if (description != null)
+                {
+                    sb.Append("Description");
+                    sb.Append("='");
+                    sb.Append(description);
+                    sb.Append("'");
+                }
+                sb.Append($" WHERE Id  = {id}");
+                using (SqlConnection sqlConnection = new SqlConnection(databaseService.ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(sb.ToString(), sqlConnection))
+                    {
+                        int affectedRows = sqlCommand.ExecuteNonQuery();
+                        Console.WriteLine($"Rows affected: {affectedRows}");
+                    }
+                }
+            }
+            else 
+            {
+                Console.WriteLine("title or description is needed");
             }
         }
     }
