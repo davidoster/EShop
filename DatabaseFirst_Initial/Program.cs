@@ -21,16 +21,16 @@ namespace DatabaseFirst_Initial
             Console.WriteLine(databaseService.ConnectionString);
 
             // CreateData
-            //CreateData(databaseService);
+            CreateData(databaseService);
 
             // ReadData
-            //ReadData(databaseService);
+            ReadData(databaseService);
 
             // UpdateData
-            //UpdateData(databaseService, 97, "Billy", "Billakos");
+            UpdateData(databaseService, 178, "Billy", "Billakos");
 
             // DeleteData
-            DeleteData(databaseService, 98);
+            DeleteData(databaseService, 185);
         }
 
         private static void CreateData(DatabaseService databaseService)
