@@ -13,6 +13,8 @@ namespace DatabaseFirst_Initial.Services
 
         // private static int CreateData(DatabaseService databaseService, ProductCategory productCategory)
         int CreateData(ProductCategory productCategory);
-        
+        int CreateData(Product product);
+
+
     }
 }
