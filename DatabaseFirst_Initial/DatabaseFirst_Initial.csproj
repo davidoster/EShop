@@ -46,6 +46,7 @@
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Server.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DatabaseService.cs" />
