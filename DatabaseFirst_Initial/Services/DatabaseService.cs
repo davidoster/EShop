@@ -1,6 +1,7 @@
 ﻿using DatabaseFirst_Initial.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,40 @@ namespace DatabaseFirst_Initial.Services
                 sbConnectionString.Append(";");
             }
             ConnectionString = sbConnectionString.ToString(); // Server=ra1.anystream.eu,9888;
+        }
+
+        public int CreateData(ProductCategory productCategory)
+        {
+            int producedId = -1;
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+            {
+                sqlConnection.Open();
+                String sqlQuery = $"INSERT INTO {Database.Table}(Title, Description)" +
+                    $"VALUES(@title1, @description1)"; //,(@title2, @description2)";
+                using (SqlCommand command = new SqlCommand(sqlQuery, sqlConnection))
+                {
+                    command.Parameters.AddWithValue("@title1", productCategory.Title);
+                    command.Parameters.AddWithValue("@description1", productCategory.Description);
+                    //command.Parameters.AddWithValue("@title2", "Jacob");
+                    //command.Parameters.AddWithValue("@description2", "UAE");
+                    int rowsAffected = command.ExecuteNonQuery();
+                }
+                using (SqlCommand command1 = new SqlCommand("SELECT @@IDENTITY", sqlConnection))
+                {
+                    //var obj = command1.ExecuteScalar(); //  row[0] reader[0]
+                    //producedId = Convert.ToInt32(obj);
+
+                    int.TryParse(command1.ExecuteScalar().ToString(), out producedId);
+
+                    /***
+                     * 
+                     * void Add(int i, int j, out int result) { result = i + j; }
+                     * 
+                     */
+                }
+
+            }
+            return producedId;
         }
     }
 }

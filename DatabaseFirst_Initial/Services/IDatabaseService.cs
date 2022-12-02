@@ -9,5 +9,10 @@ namespace DatabaseFirst_Initial.Services
         User User { get; set; }
 
         string ConnectionString { get; }
+
+
+        // private static int CreateData(DatabaseService databaseService, ProductCategory productCategory)
+        int CreateData(ProductCategory productCategory);
+        
     }
 }

@@ -19,13 +19,14 @@ namespace DatabaseFirst_Initial
                     new User("sa", "SuperSecretPassw0rd")
                 );
             Console.WriteLine(databaseService.ConnectionString);
-            List<ProductCategory> listOfProductCategories = ReadData(databaseService);
+            List<ProductCategory> listOfProductCategories = ReadData(databaseService, 115);
             Console.WriteLine($"Rows: {listOfProductCategories.Count}");
             //ReadData(databaseService, 190);
 
             // CreateData
             //int id = CreateData(databaseService, new ProductCategory("Personal Computer", "The Awesome Personal Computer"));
             //Console.WriteLine($"Created row with Id = {id}");
+            databaseService.CreateData(new ProductCategory("Peripheral", "The Awesome Peripherals"));
 
             // ReadData
             //ReadData(databaseService);
@@ -38,39 +39,39 @@ namespace DatabaseFirst_Initial
             //DeleteData(databaseService, 185);
         }
 
-        private static int CreateData(DatabaseService databaseService, ProductCategory productCategory)
-        {
-            int producedId = -1;
-            using (SqlConnection sqlConnection = new SqlConnection(databaseService.ConnectionString))
-            {
-                sqlConnection.Open();
-                String sqlQuery = $"INSERT INTO {databaseService.Database.Table}(Title, Description)" +
-                    $"VALUES(@title1, @description1)"; //,(@title2, @description2)";
-                using (SqlCommand command = new SqlCommand(sqlQuery, sqlConnection))
-                {
-                    command.Parameters.AddWithValue("@title1", productCategory.Title);
-                    command.Parameters.AddWithValue("@description1", productCategory.Description);
-                    //command.Parameters.AddWithValue("@title2", "Jacob");
-                    //command.Parameters.AddWithValue("@description2", "UAE");
-                    int rowsAffected = command.ExecuteNonQuery();
-                }
-                using(SqlCommand command1 = new SqlCommand("SELECT @@IDENTITY", sqlConnection))
-                {
-                    //var obj = command1.ExecuteScalar(); //  row[0] reader[0]
-                    //producedId = Convert.ToInt32(obj);
+        //private static int CreateData(DatabaseService databaseService, ProductCategory productCategory)
+        //{
+        //    int producedId = -1;
+        //    using (SqlConnection sqlConnection = new SqlConnection(databaseService.ConnectionString))
+        //    {
+        //        sqlConnection.Open();
+        //        String sqlQuery = $"INSERT INTO {databaseService.Database.Table}(Title, Description)" +
+        //            $"VALUES(@title1, @description1)"; //,(@title2, @description2)";
+        //        using (SqlCommand command = new SqlCommand(sqlQuery, sqlConnection))
+        //        {
+        //            command.Parameters.AddWithValue("@title1", productCategory.Title);
+        //            command.Parameters.AddWithValue("@description1", productCategory.Description);
+        //            //command.Parameters.AddWithValue("@title2", "Jacob");
+        //            //command.Parameters.AddWithValue("@description2", "UAE");
+        //            int rowsAffected = command.ExecuteNonQuery();
+        //        }
+        //        using(SqlCommand command1 = new SqlCommand("SELECT @@IDENTITY", sqlConnection))
+        //        {
+        //            //var obj = command1.ExecuteScalar(); //  row[0] reader[0]
+        //            //producedId = Convert.ToInt32(obj);
 
-                    int.TryParse(command1.ExecuteScalar().ToString(), out producedId);
+        //            int.TryParse(command1.ExecuteScalar().ToString(), out producedId);
 
-                    /***
-                     * 
-                     * void Add(int i, int j, out int result) { result = i + j; }
-                     * 
-                     */
-                }
+        //            /***
+        //             * 
+        //             * void Add(int i, int j, out int result) { result = i + j; }
+        //             * 
+        //             */
+        //        }
 
-            }
-            return producedId;
-        }
+        //    }
+        //    return producedId;
+        //}
 
         private static List<ProductCategory> ReadData(DatabaseService databaseService, int? id = null)
         {
@@ -79,8 +80,16 @@ namespace DatabaseFirst_Initial
                             new SqlConnection(databaseService.ConnectionString)) // connect (δημιουργώ ένα connection)
             {
                 // Create the Command and Parameter objects.
-                SqlCommand command = new SqlCommand(databaseService.Database.Query, connection); // new query window
-
+                SqlCommand command;
+                if (id != null)
+                {
+                    string query = databaseService.Database.Query + $" WHERE Id = {id}";
+                    command = new SqlCommand(query, connection); // new query window
+                }
+                else
+                {
+                    command = new SqlCommand(databaseService.Database.Query, connection); // new query window
+                }
 
                 // Open the connection in a try/catch block.
                 // Create and execute the DataReader, writing the result
@@ -94,8 +103,8 @@ namespace DatabaseFirst_Initial
                     
                     while (reader.Read()) // για όσο μπορώ να διαβάσω (υπάρχουν εγγραφές) διάβαζε)
                     {
-                        var productCategories2 = reader.OfType<ProductCategory>();
-                        Console.WriteLine(productCategories2.FirstOrDefault().Id);
+                        //var productCategories2 = reader.OfType<ProductCategory>();
+                        //Console.WriteLine(productCategories2.FirstOrDefault().Id);
                         
                         int someId = reader.GetFieldValue<int>(0); // Id (int)
                         string someTitle = reader.GetFieldValue<string>(1);
@@ -111,8 +120,7 @@ namespace DatabaseFirst_Initial
                     Console.WriteLine("Houston we have major problems!!!!");
                     Console.WriteLine(ex.Message);
                 }
-                Console.ReadLine();
-                connection.Close(); // is not needed because of using
+                //connection.Close(); // is not needed because of using
                 return productCategories;
             }
         }
