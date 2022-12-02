@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseFirst_Initial.Models
 {
-    internal class Database
+    public class Database
     {
         public string Name { get; set; }
         public string Table { get; set; }

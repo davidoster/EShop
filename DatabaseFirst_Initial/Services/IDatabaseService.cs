@@ -2,7 +2,7 @@
 
 namespace DatabaseFirst_Initial.Services
 {
-    internal interface IDatabaseService
+    public interface IDatabaseService
     {
         Database Database { get; set; }
         Server Server { get; set; }

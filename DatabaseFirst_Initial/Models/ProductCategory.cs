@@ -2,7 +2,7 @@
 
 namespace DatabaseFirst_Initial.Models
 {
-    internal class ProductCategory
+    public class ProductCategory
     {
         public int Id { get; set; }
         public string Title { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseFirst_Initial.Services
 {
-    internal class DatabaseService : IDatabaseService
+    public class DatabaseService : IDatabaseService
     {
         public Database Database { get; set; }
         public Server Server { get; set; }

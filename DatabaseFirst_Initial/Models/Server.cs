@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseFirst_Initial.Models
 {
-    internal class Server
+    public class Server
     {
         public string Name { get; set; }
         public string Port { get; set; }

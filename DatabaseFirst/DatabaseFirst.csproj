@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{111FEA96-1B58-42A8-9E69-B16578E64981}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>DatabaseFirst_Initial</RootNamespace>
-    <AssemblyName>DatabaseFirst_Initial</AssemblyName>
+    <ProjectGuid>{BCEBDD54-9FC0-4C2A-97A6-3BF175BB49A1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DatabaseFirst</RootNamespace>
+    <AssemblyName>DatabaseFirst</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,17 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Database.cs" />
-    <Compile Include="Models\Server.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DatabaseService.cs" />
-    <Compile Include="Services\IDatabaseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseFirst_Initial\DatabaseFirst_Initial.csproj">
+      <Project>{111fea96-1b58-42a8-9e69-b16578e64981}</Project>
+      <Name>DatabaseFirst_Initial</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

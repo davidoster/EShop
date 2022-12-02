@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DatabaseFirst_Initial")]
-[assembly: AssemblyDescription("My First DB First App")]
+[assembly: AssemblyTitle("DatabaseFirst")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PeopleCert Education")]
-[assembly: AssemblyProduct("DatabaseFirst_Initial")]
-[assembly: AssemblyCopyright("Copyright ©  2022, PeopleCert Education")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("DatabaseFirst")]
+[assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("111fea96-1b58-42a8-9e69-b16578e64981")]
+[assembly: Guid("bcebdd54-9fc0-4c2a-97a6-3bf175bb49a1")]
 
 // Version information for an assembly consists of the following four values:
 //
