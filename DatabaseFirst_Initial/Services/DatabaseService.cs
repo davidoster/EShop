@@ -83,9 +83,9 @@ namespace DatabaseFirst_Initial.Services
             return producedId;
         }
 
-        public int CreateData(Product product) 
-        { 
-
+        public int CreateData(Product product)
+        {
+            return 0;
         }
     }
 }

@@ -20,5 +20,9 @@ namespace DatabaseFirst_Initial.Models
             Title = title;
             Description = description;
         }
+
+        public override string ToString() {
+            return $"Id: {Id}\tTitle: {Title}\tDescription: {Description}";
+        }
     }
 }
