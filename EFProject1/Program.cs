@@ -12,24 +12,44 @@ namespace EFProject1
     {
         static void Main(string[] args)
         {
-            AppDBContext appDBContext = new AppDBContext();
-            ProductCategory productCategory = new ProductCategory("Work Telephone XKB22-AN Pro", 
-                "Pro Series of the most expensive telephone in house");
-            Console.WriteLine($"productCategory(before): {productCategory}");
+            AppDBContext appDBContext = new AppDBContext(); // SqlConnection.Open()
             
+            // CREATE
             // creates a new record
-            ProductCategory productCategory2 = appDBContext.ProductCategories.Add(productCategory);
-            
+            ProductCategory productCategory2 = appDBContext.ProductCategories.Add(new ProductCategory("Work Telephone XKB22-AN Pro",
+                "Pro Series of the most expensive telephone in house"));
+            // object of a model productCategory becomes an entity == has a record in a db table
+
             // saves any pending changes
             appDBContext.SaveChanges();
-            Console.WriteLine($"productCategory: {productCategory}");
-            Console.WriteLine($"productCategory2: {productCategory2}");
-            
+            Console.WriteLine($"productCategory2 after add: {productCategory2}");
+
+            // UPDATE
             // changes the actual (for the GOD shake!!!!) OBJECT in C#
             // and then this is saved to DB!!!!!!
-            productCategory.Description += " MAX TURBO EXTRA SUPER NICE!!";
+            productCategory2.Description += " MAX TURBO EXTRA SUPER NICE!!";
             appDBContext.SaveChanges();
 
+            // DELETE (REMOVE)
+            // deletes an entity - must already exists
+            var pd3 = appDBContext.ProductCategories.Remove(productCategory2);
+            // can I undo the marking of deletion???
+            
+
+            // what happens when I try to remove a non entity
+            //try
+            //{
+            //    ProductCategory productCategory = new ProductCategory("Work Telephone XKB22-AN Pro",
+            //            "Pro Series of the most expensive telephone in house"); // an object typeof(ProductCategory)
+            //    appDBContext.ProductCategories.Remove(productCategory);
+            //    appDBContext.SaveChanges();
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
+
+            // READ
         }
     }
 }
