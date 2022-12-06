@@ -34,7 +34,7 @@ namespace EFProject1
             // deletes an entity - must already exists
             var pd3 = appDBContext.ProductCategories.Remove(productCategory2);
             // can I undo the marking of deletion???
-            
+
 
             // what happens when I try to remove a non entity
             //try
@@ -49,7 +49,27 @@ namespace EFProject1
             //    Console.WriteLine(e.Message);
             //}
 
-            // READ
+            // READ a single row / record based on its PK
+            Console.WriteLine(appDBContext.ProductCategories.Find(115)); // find an entity by Id(PK) NEEDS default ctor
+            //Console.WriteLine(appDBContext.ProductCategories.ElementAt(0));
+
+            // READ THE WHOLE LOT
+            // LINQ QUERY SYNTAX
+            var allProductCategories = (from productCategory in appDBContext.ProductCategories
+                                       select productCategory).ToList<ProductCategory>();
+            foreach (var item in allProductCategories)
+            {
+                Console.WriteLine(item);
+            }
+            
+            // LINQ METHOD SYNTAX
+            var allProductCategories2 = appDBContext.ProductCategories.ToList<ProductCategory>(); 
+            
+            Console.WriteLine("---------------------------------------------------------------");
+            foreach (var item in allProductCategories2)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
