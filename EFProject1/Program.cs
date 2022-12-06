@@ -91,8 +91,8 @@ namespace EFProject1
 
             // Find with Title LIKE "Pana%"
             var productCategoriesWithPana2 = from p in appDBContext.ProductCategories
-                                            where p.Title.StartsWith("Pana") // Contains %Pana%, StartsWith Pana%, EndsWith %Pana
-                                            select new { p.Title, p.Description };
+                                             where p.Title.StartsWith("Pana") // Contains %Pana%, StartsWith Pana%, EndsWith %Pana
+                                             select new { p.Title, p.Description };
             foreach (var item in productCategoriesWithPana2)
             {
                 Console.WriteLine(item);
