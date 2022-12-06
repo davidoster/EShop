@@ -66,16 +66,34 @@ namespace EFProject1
             // LINQ QUERY SYNTAX
             var allProductCategories = (from productCategory in appDBContext.ProductCategories
                                        select productCategory).ToList<ProductCategory>();
-            foreach (var item in allProductCategories)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in allProductCategories)
+            //{
+            //    Console.WriteLine(item);
+            //}
             
             // LINQ METHOD SYNTAX
             var allProductCategories2 = appDBContext.ProductCategories.ToList<ProductCategory>(); 
             
             Console.WriteLine("---------------------------------------------------------------");
-            foreach (var item in allProductCategories2)
+            //foreach (var item in allProductCategories2)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            // Find with Title = "Pana"
+            //var productCategoriesWithPana = from p in appDBContext.ProductCategories
+            //                                where p.Title == "Pana"
+            //                                select new { p.Title, p.Description };
+            //foreach (var item in productCategoriesWithPana)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            // Find with Title LIKE "Pana%"
+            var productCategoriesWithPana2 = from p in appDBContext.ProductCategories
+                                            where p.Title.StartsWith("Pana") // Contains %Pana%, StartsWith Pana%, EndsWith %Pana
+                                            select new { p.Title, p.Description };
+            foreach (var item in productCategoriesWithPana2)
             {
                 Console.WriteLine(item);
             }
