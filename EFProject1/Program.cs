@@ -12,6 +12,13 @@ namespace EFProject1
     {
         static void Main(string[] args)
         {
+            new ProductCategory() { Id = 115, Title = "asdasd", Description = "sdfsdf" };
+
+            // anonymous object
+            var myAnon = new { Id = 115, Title = "ASDASD", Description = "sdfsdasd" };
+            Console.WriteLine(myAnon.Id);
+
+
             AppDBContext appDBContext = new AppDBContext(); // SqlConnection.Open()
             
             // CREATE
@@ -34,8 +41,10 @@ namespace EFProject1
             // deletes an entity - must already exists
             var pd3 = appDBContext.ProductCategories.Remove(productCategory2);
             // can I undo the marking of deletion???
-
-
+            appDBContext.Entry(productCategory2).State = System.Data.Entity.EntityState.Unchanged;
+            appDBContext.Entry<ProductCategory>(productCategory2).State = System.Data.Entity.EntityState.Unchanged;
+            appDBContext.SaveChanges();
+            Console.WriteLine($"deleted???: {appDBContext.ProductCategories.Find(productCategory2.Id)}");
             // what happens when I try to remove a non entity
             //try
             //{
