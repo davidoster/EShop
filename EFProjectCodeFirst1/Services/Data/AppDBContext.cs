@@ -1,4 +1,5 @@
 ﻿using DatabaseFirst_Initial.Models;
+using EFProjectCodeFirst1.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,6 +13,8 @@ namespace EFProjectCodeFirst1.Services.Data
     {
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; } // LAZY
+
+        public virtual DbSet<SomeTable> SomeTables { get; set; }
 
         // Customer
         // Order

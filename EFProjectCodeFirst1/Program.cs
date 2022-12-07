@@ -3,6 +3,7 @@ using EFProjectCodeFirst1.Services.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,17 +36,34 @@ namespace EFProjectCodeFirst1
             //    });
             //appDBContext.SaveChanges();
 
-            appDBContext.Products.Add(
-                new Product
-                {
-                    Title = "Awesome Pencil 2",
-                    Description = "Awesome Pencil description",
-                    Price = 20,
-                    Category = 
-                        appDBContext.ProductCategories.Where(productCategory => productCategory.Title == "Awesome Pencils").SingleOrDefault()
-                });
+            //appDBContext.Products.Add(
+            //    new Product
+            //    {
+            //        Title = "Awesome Pencil 2",
+            //        Description = "Awesome Pencil description",
+            //        Price = 20,
+            //        Category = 
+            //            appDBContext.ProductCategories.Where(productCategory => 
+            //            productCategory.Title == "Awesome Pencils" && productCategory.Description == "").SingleOrDefault()
+            //    });
 
-            appDBContext.SaveChanges();
+            //appDBContext.SaveChanges();
+
+            // Query Syntax
+            //var pCA = (from productCategory in appDBContext.ProductCategories
+            //           where productCategory.Title == "Awesome Pencils"
+            //           select productCategory).ElementAtOrDefault(0);
+            
+            //// Method Syntax
+            //var pCB = appDBContext.ProductCategories.Where(productCategory =>
+            //            productCategory.Title == "Awesome Pencils").SingleOrDefault();
+
+            //Console.WriteLine(pCA == pCB);
+
+
+
+
+            Console.ReadKey();
         }
     }
 }
