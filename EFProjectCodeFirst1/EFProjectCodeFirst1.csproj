@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202212071529146_RevertSomeChangesToProduct_And_ProductCategory.designer.cs">
       <DependentUpon>202212071529146_RevertSomeChangesToProduct_And_ProductCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212071552548_CustomerOrders.cs" />
+    <Compile Include="Migrations\202212071552548_CustomerOrders.designer.cs">
+      <DependentUpon>202212071552548_CustomerOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Order.cs" />
@@ -109,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212071529146_RevertSomeChangesToProduct_And_ProductCategory.resx">
       <DependentUpon>202212071529146_RevertSomeChangesToProduct_And_ProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212071552548_CustomerOrders.resx">
+      <DependentUpon>202212071552548_CustomerOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
