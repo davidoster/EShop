@@ -20,8 +20,9 @@ namespace DatabaseFirst_Initial.Models
         public double Price { get; set; }
 
         [Required]
+        [ForeignKey("Id")]
         public ProductCategory Category { get; set; } // FK // ONE ProductCategory TO MANY Product (s)
-        //public int ProductCategoryId { get; set; } // DON'T DO THIS for EF!!!!
+        public int ProductCategoryId { get; set; } // DON'T DO THIS for EF!!!!
 
         public Product()
         {

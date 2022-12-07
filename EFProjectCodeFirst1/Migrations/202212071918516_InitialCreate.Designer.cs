@@ -7,13 +7,13 @@ namespace EFProjectCodeFirst1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class RevertSomeChangesToProduct_And_ProductCategory : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RevertSomeChangesToProduct_And_ProductCategory));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202212071529146_RevertSomeChangesToProduct_And_ProductCategory"; }
+            get { return "202212071918516_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
