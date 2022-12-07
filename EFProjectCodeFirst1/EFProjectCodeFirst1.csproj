@@ -61,11 +61,15 @@
     <Compile Include="Migrations\202212071155412_CreateSomeTable.designer.cs">
       <DependentUpon>202212071155412_CreateSomeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212071307136_CreateSomeTable1.cs" />
+    <Compile Include="Migrations\202212071307136_CreateSomeTable1.designer.cs">
+      <DependentUpon>202212071307136_CreateSomeTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Data\AppDBContext.cs" />
-    <Compile Include="Services\Data\SomeTable.cs" />
+    <Compile Include="Models\SomeTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -87,10 +91,11 @@
     <EmbeddedResource Include="Migrations\202212071155412_CreateSomeTable.resx">
       <DependentUpon>202212071155412_CreateSomeTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212071307136_CreateSomeTable1.resx">
+      <DependentUpon>202212071307136_CreateSomeTable1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

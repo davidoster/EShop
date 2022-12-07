@@ -14,6 +14,7 @@
                         MyProperty = c.Int(nullable: false, identity: true),
                         MyDate = c.DateTime(nullable: false),
                         MyBoolProperty = c.Boolean(nullable: false),
+                        MyStringProperty = c.String(),
                     })
                 .PrimaryKey(t => t.MyProperty);
             

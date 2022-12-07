@@ -11,8 +11,8 @@ namespace EFProjectCodeFirst1.Models
     {
         [Key]
         public int MyProperty { get; set; }
-        public DateTime MyDate { get; set; }
-        public bool MyBoolProperty { get; set; }
+        public DateTime? MyDate { get; set; }
+        public bool? MyBoolProperty { get; set; }
         public string MyStringProperty { get; set; }
     }
 }

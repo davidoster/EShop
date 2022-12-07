@@ -53,7 +53,7 @@ namespace EFProjectCodeFirst1
             //var pCA = (from productCategory in appDBContext.ProductCategories
             //           where productCategory.Title == "Awesome Pencils"
             //           select productCategory).ElementAtOrDefault(0);
-            
+
             //// Method Syntax
             //var pCB = appDBContext.ProductCategories.Where(productCategory =>
             //            productCategory.Title == "Awesome Pencils").SingleOrDefault();
@@ -61,7 +61,10 @@ namespace EFProjectCodeFirst1
             //Console.WriteLine(pCA == pCB);
 
 
-
+            appDBContext.SomeTables.Add(new Models.SomeTable());
+            appDBContext.SaveChanges();
+            var myDateTime = new DateTime();
+            Console.WriteLine(myDateTime);
 
             Console.ReadKey();
         }
