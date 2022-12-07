@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DatabaseFirst_Initial.Models
 {
+    [Table("CustomerProducts")]
     public class Product
     {
         //[Key] // annotations, decorators, attributes
         public int Id { get; set; }
+        
+        [Required]
         public string Title { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
+
+        [Required]
         public ProductCategory Category { get; set; } // FK // ONE ProductCategory TO MANY Product (s)
         //public int ProductCategoryId { get; set; } // DON'T DO THIS for EF!!!!
 

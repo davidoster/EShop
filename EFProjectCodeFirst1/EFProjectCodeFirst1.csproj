@@ -65,7 +65,17 @@
     <Compile Include="Migrations\202212071307136_CreateSomeTable1.designer.cs">
       <DependentUpon>202212071307136_CreateSomeTable1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212071459127_SomeChangesToProduct_And_ProductCategory.cs" />
+    <Compile Include="Migrations\202212071459127_SomeChangesToProduct_And_ProductCategory.designer.cs">
+      <DependentUpon>202212071459127_SomeChangesToProduct_And_ProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212071529146_RevertSomeChangesToProduct_And_ProductCategory.cs" />
+    <Compile Include="Migrations\202212071529146_RevertSomeChangesToProduct_And_ProductCategory.designer.cs">
+      <DependentUpon>202212071529146_RevertSomeChangesToProduct_And_ProductCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Data\AppDBContext.cs" />
@@ -93,6 +103,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212071307136_CreateSomeTable1.resx">
       <DependentUpon>202212071307136_CreateSomeTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212071459127_SomeChangesToProduct_And_ProductCategory.resx">
+      <DependentUpon>202212071459127_SomeChangesToProduct_And_ProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212071529146_RevertSomeChangesToProduct_And_ProductCategory.resx">
+      <DependentUpon>202212071529146_RevertSomeChangesToProduct_And_ProductCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -8,6 +8,7 @@ namespace DatabaseFirst_Initial.Models
         public string Title { get; set; }
         public string Description { get; set; }
 
+
         public ProductCategory()
         {
 
