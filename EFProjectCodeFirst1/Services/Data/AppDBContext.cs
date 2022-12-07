@@ -14,7 +14,7 @@ namespace EFProjectCodeFirst1.Services.Data
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; } // LAZY
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Order> CustomerOrders { get; set; }
 
         public virtual DbSet<SomeTable> SomeTables { get; set; }
 
