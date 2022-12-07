@@ -9,12 +9,13 @@ namespace DatabaseFirst_Initial.Models
 {
     public class Product
     {
-        [Key] // annotations, decorators, attributes
+        //[Key] // annotations, decorators, attributes
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
-        public ProductCategory Category { get; set; }
+        public ProductCategory Category { get; set; } // FK // ONE ProductCategory TO MANY Product (s)
+        //public int ProductCategoryId { get; set; } // DON'T DO THIS for EF!!!!
 
         public Product()
         {
