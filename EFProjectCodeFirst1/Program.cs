@@ -63,8 +63,10 @@ namespace EFProjectCodeFirst1
 
 
             var productPen = appDBContext.Products.Where(p => p.Title == "Awesome Pen").SingleOrDefault();
+            //appDBContext.Entry(productPen).Reference(p => p.Category).Load();
             Console.WriteLine(productPen.Category.Id);
             var productPencil = appDBContext.Products.Where(p => p.Title == "Awesome Pencil").SingleOrDefault();
+            //appDBContext.Entry(productPencil).Reference(p => p.Category).Load();
             Console.WriteLine(productPencil.Category.Id);
 
             Console.ReadKey();
