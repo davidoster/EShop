@@ -23,6 +23,7 @@ namespace EFProjectCodeFirst1.Services.Data
 
         public AppDBContext() : base("name=MyConnectionString")
         {
+            Configuration.LazyLoadingEnabled = false; // does it really work??? and how?
         }
     }
 }
