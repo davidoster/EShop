@@ -1,4 +1,5 @@
 ﻿using DatabaseFirst_Initial.Models;
+using EFProjectCodeFirst1.Models;
 using EFProjectCodeFirst1.Services.Data;
 using System;
 using System.Collections.Generic;
@@ -63,11 +64,23 @@ namespace EFProjectCodeFirst1
 
 
             var productPen = appDBContext.Products.Where(p => p.Title == "Awesome Pen").SingleOrDefault();
-            //appDBContext.Entry(productPen).Reference(p => p.Category).Load();
+            appDBContext.Entry(productPen).Reference(p => p.Category).Load();
             Console.WriteLine(productPen.Category.Id);
             var productPencil = appDBContext.Products.Where(p => p.Title == "Awesome Pencil").SingleOrDefault();
-            //appDBContext.Entry(productPencil).Reference(p => p.Category).Load();
+            appDBContext.Entry(productPencil).Reference(p => p.Category).Load();
             Console.WriteLine(productPencil.Category.Id);
+
+            var customerGeorge = appDBContext.Customers.Where(c => c.Email.Contains("paspa@hotmail.com")).SingleOrDefault();
+            var listOfProductData = new List<ProductData>();
+            listOfProductData.Add(new ProductData { Price = 35, Quantity = 3, Product = productPen });
+            listOfProductData.Add(new ProductData { Price = 35, Quantity = 3, Product = productPencil });
+            appDBContext.OrderMultiples.Add(new Models.OrderMultiple
+            {
+                Customer = customerGeorge,
+                OrderDate = DateTime.Now,
+                ProductData = listOfProductData
+            });
+            appDBContext.SaveChanges();
 
             Console.ReadKey();
         }

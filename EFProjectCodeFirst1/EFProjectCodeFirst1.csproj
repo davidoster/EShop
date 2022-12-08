@@ -57,8 +57,13 @@
     <Compile Include="Migrations\202212071918516_InitialCreate.designer.cs">
       <DependentUpon>202212071918516_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212080514556_CustomerOrdersMultiple.cs" />
+    <Compile Include="Migrations\202212080514556_CustomerOrdersMultiple.designer.cs">
+      <DependentUpon>202212080514556_CustomerOrdersMultiple.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\OrderMultiple.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +86,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202212071918516_InitialCreate.resx">
       <DependentUpon>202212071918516_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212080514556_CustomerOrdersMultiple.resx">
+      <DependentUpon>202212080514556_CustomerOrdersMultiple.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

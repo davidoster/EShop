@@ -107,20 +107,24 @@
             // Add some Customers
             try
             {
-                context.Customers.AddOrUpdate(new Customer
+                if (context.Customers.Where(c => c.Email == "paspa@hotmail.com").Count() == 0 &&
+                    context.Customers.Where(c => c.Email == "paspabill@hotmail.com").Count() == 0)
                 {
-                    Name = "George Pasparakis",
-                    Email = "paspa@hotmail.com",
-                    PhoneNumber = "+306977649229"
-                });
+                    context.Customers.AddOrUpdate(new Customer
+                    {
+                        Name = "George Pasparakis",
+                        Email = "paspa@hotmail.com",
+                        PhoneNumber = "+306977649229"
+                    });
 
-                context.Customers.AddOrUpdate(new Customer
-                {
-                    Name = "Bill Pasparakis",
-                    Email = "paspabill@hotmail.com",
-                    PhoneNumber = "+306978649229"
-                });
-                context.SaveChanges();
+                    context.Customers.AddOrUpdate(new Customer
+                    {
+                        Name = "Bill Pasparakis",
+                        Email = "paspabill@hotmail.com",
+                        PhoneNumber = "+306978649229"
+                    });
+                    context.SaveChanges();
+                }
             }
             catch(Exception e)
             {
