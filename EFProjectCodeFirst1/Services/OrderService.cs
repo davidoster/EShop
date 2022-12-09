@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EFProjectCodeFirst1.Services
 {
-    internal class OrderService : IOrderService<T>
+    internal class OrderService<T> : IOrderService<T>
     {
 
         public Order AddSingleProductOrder(AppDBContext context, Customer customer, Product product)
