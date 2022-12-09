@@ -2,6 +2,7 @@
 {
     using DatabaseFirst_Initial.Models;
     using EFProjectCodeFirst1.Models;
+    using EFProjectCodeFirst1.Services;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -146,29 +147,32 @@
             var productPencil = context.Products.Where(p => p.Title == "Awesome Pencil").SingleOrDefault();
 
             // Add the sample Orders for these customers
+            OrderService orderService = new OrderService();
             var finalProductPrice = productPen.Price + 22;
             var finalProductQuantity = 4;
-            context.CustomerOrders.AddOrUpdate(new Order
-            {
-                Customer = customerGeorge,
-                OrderDate = DateTime.Now,
-                ProductPrice = finalProductPrice,
-                ProductQuantity = finalProductQuantity,
-                TotalPrice = finalProductPrice * finalProductQuantity,
-                Product = productPen
-            });
+            orderService.AddSingleProductOrder(context, customerGeorge, productPen);
+            //context.CustomerOrders.AddOrUpdate(new Order
+            //{
+            //    Customer = customerGeorge,
+            //    OrderDate = DateTime.Now,
+            //    ProductPrice = finalProductPrice,
+            //    ProductQuantity = finalProductQuantity,
+            //    TotalPrice = finalProductPrice * finalProductQuantity,
+            //    Product = productPen
+            //});
             
             finalProductPrice = productPencil.Price + 22;
             finalProductQuantity = 4;
-            context.CustomerOrders.AddOrUpdate(new Order
-            {
-                Customer = customerBill,
-                OrderDate = DateTime.Now,
-                ProductPrice = finalProductPrice,
-                ProductQuantity = finalProductQuantity,
-                TotalPrice = finalProductPrice * finalProductQuantity,
-                Product = productPencil
-            }); 
+            orderService.AddSingleProductOrder(context, customerBill, productPencil);
+            //context.CustomerOrders.AddOrUpdate(new Order
+            //{
+            //    Customer = customerBill,
+            //    OrderDate = DateTime.Now,
+            //    ProductPrice = finalProductPrice,
+            //    ProductQuantity = finalProductQuantity,
+            //    TotalPrice = finalProductPrice * finalProductQuantity,
+            //    Product = productPencil
+            //}); 
         }
     }
 }

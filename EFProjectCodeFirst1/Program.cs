@@ -1,5 +1,6 @@
 ﻿using DatabaseFirst_Initial.Models;
 using EFProjectCodeFirst1.Models;
+using EFProjectCodeFirst1.Services;
 using EFProjectCodeFirst1.Services.Data;
 using System;
 using System.Collections.Generic;
@@ -81,15 +82,17 @@ namespace EFProjectCodeFirst1
             AddProductData ProductDataSum = AddData;
             ProductDataSum = AddData2;
 
-            appDBContext.OrderMultiples.Add(new Models.OrderMultiple
-            {
-                Customer = customerGeorge,
-                OrderDate = DateTime.Now,
-                ProductData = listOfProductData,
-                TotalPrice = listOfProductData.Sum(x => x.Price * x.Quantity)
-                //TotalPrice = listOfProductData.Sum(x => ProductDataSum(x))  // 180 + 63 // (15 * 12) + (9 * 7)
-            });
-            appDBContext.SaveChanges();
+            OrderService orderService = new OrderService();
+            orderService.AddMultipleProductsOrder(appDBContext, customerGeorge, listOfProductData);
+            //appDBContext.OrderMultiples.Add(new Models.OrderMultiple
+            //{
+            //    Customer = customerGeorge,
+            //    OrderDate = DateTime.Now,
+            //    ProductData = listOfProductData,
+            //    TotalPrice = listOfProductData.Sum(x => x.Price * x.Quantity)
+            //    //TotalPrice = listOfProductData.Sum(x => ProductDataSum(x))  // 180 + 63 // (15 * 12) + (9 * 7)
+            //});
+            //appDBContext.SaveChanges();
 
             Console.ReadKey();
         }

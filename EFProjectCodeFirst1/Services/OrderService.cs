@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 
 namespace EFProjectCodeFirst1.Services
 {
-    internal class OrderService
+    internal class OrderService : IOrderService<T>
     {
 
-        public void AddSingleProductOrder(AppDBContext context, Customer customer, Product product)
+        public Order AddSingleProductOrder(AppDBContext context, Customer customer, Product product)
         {
             
             var finalProductPrice = product.Price + 22;
             var finalProductQuantity = 4;
-            context.CustomerOrders.AddOrUpdate(new Order
+            var insertedOrder = context.CustomerOrders.Add(new Order
             {
                 Customer = customer,
                 OrderDate = DateTime.Now,
@@ -28,11 +28,13 @@ namespace EFProjectCodeFirst1.Services
                 TotalPrice = finalProductPrice * finalProductQuantity,
                 Product = product
             });
+            context.SaveChanges();
+            return insertedOrder;
         }
 
-        public void AddMultipleProductsOrder(AppDBContext context, Customer customer, List<ProductData> products) 
+        public OrderMultiple AddMultipleProductsOrder(AppDBContext context, Customer customer, List<ProductData> products) 
         {
-            context.OrderMultiples.Add(new Models.OrderMultiple
+            var insertedOrder = context.OrderMultiples.Add(new Models.OrderMultiple
             {
                 Customer = customer,
                 OrderDate = DateTime.Now,
@@ -40,6 +42,8 @@ namespace EFProjectCodeFirst1.Services
                 TotalPrice = products.Sum(x => x.Price * x.Quantity)
                 //TotalPrice = listOfProductData.Sum(x => ProductDataSum(x))  // 180 + 63 // (15 * 12) + (9 * 7)
             });
+            context.SaveChanges();
+            return insertedOrder;
         }
 
         public void AddOrder()
