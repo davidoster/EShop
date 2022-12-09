@@ -2,6 +2,7 @@
 using EFProjectCodeFirst1.Services.Data;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography;
@@ -63,9 +64,19 @@ namespace EFProjectCodeFirst1
 
 
             var productPen = appDBContext.Products.Where(p => p.Title == "Awesome Pen").SingleOrDefault();
-            Console.WriteLine(productPen.Category.Id);
-            var productPencil = appDBContext.Products.Where(p => p.Title == "Awesome Pencil").SingleOrDefault();
-            Console.WriteLine(productPencil.Category.Id);
+            //context.Entry(post).Reference(p => p.Blog).Load();
+            if(appDBContext.Entry(productPen).Reference(product => product.Category).IsLoaded)
+            {
+                Console.WriteLine(productPen.Category);
+            }
+            else
+            {
+                appDBContext.Entry(productPen).Reference(product => product.Category).Load();
+                var productPenCategory = productPen.Category;
+                Console.WriteLine($"{productPenCategory.Id} {productPenCategory.Title} {productPenCategory.Description}");
+            }
+            //var productPencil = appDBContext.Products.Where(p => p.Title == "Awesome Pencil").SingleOrDefault();
+            //Console.WriteLine(productPencil.Category.Id);
 
             Console.ReadKey();
         }
