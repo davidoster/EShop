@@ -13,6 +13,7 @@ namespace EFProjectCodeFirst1
 {
     internal class Program
     {
+        delegate double AddProductData(ProductData productData);
         static void Main(string[] args)
         {
             AppDBContext appDBContext = new AppDBContext();
@@ -72,13 +73,21 @@ namespace EFProjectCodeFirst1
 
             var customerGeorge = appDBContext.Customers.Where(c => c.Email.Contains("paspa@hotmail.com")).SingleOrDefault();
             var listOfProductData = new List<ProductData>();
-            listOfProductData.Add(new ProductData { Price = 35, Quantity = 3, Product = productPen });
-            listOfProductData.Add(new ProductData { Price = 35, Quantity = 3, Product = productPencil });
+            listOfProductData.Add(new ProductData { Price = 15, Quantity = 12, Product = productPen });
+            listOfProductData.Add(new ProductData { Price = 9, Quantity = 7, Product = productPencil });
+
+            double AddData(ProductData pData) { return pData.Price * pData.Quantity; }
+            double AddData2(ProductData pData) { return (pData.Price * pData.Quantity) * 0.25; }
+            AddProductData ProductDataSum = AddData;
+            ProductDataSum = AddData2;
+
             appDBContext.OrderMultiples.Add(new Models.OrderMultiple
             {
                 Customer = customerGeorge,
                 OrderDate = DateTime.Now,
-                ProductData = listOfProductData
+                ProductData = listOfProductData,
+                TotalPrice = listOfProductData.Sum(x => x.Price * x.Quantity)
+                //TotalPrice = listOfProductData.Sum(x => ProductDataSum(x))  // 180 + 63 // (15 * 12) + (9 * 7)
             });
             appDBContext.SaveChanges();
 
