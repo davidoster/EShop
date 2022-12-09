@@ -28,13 +28,20 @@
                 context.ProductCategories.Where(pc => pc.Title == "Color Pen").Count() == 0 &&
                 context.ProductCategories.Where(pc => pc.Title == "Rubbed Eraser").Count() == 0)
             {
-                context.ProductCategories.AddOrUpdate(new ProductCategory 
-                            { Title = "Pen", Description = "A Pen" });
-                context.ProductCategories.AddOrUpdate(new ProductCategory 
+                // Update
+                //var pcPen = context.ProductCategories.Where(pc => pc.Title == "Pen").SingleOrDefault();
+                //pcPen.Title = "Pen New";
+                //context.ProductCategories.AddOrUpdate(pcPen);
+                
+                // Add
+                context.ProductCategories.Add(new ProductCategory
+                { Title = "Pen", Description = "A Pen" });
+                
+                context.ProductCategories.Add(new ProductCategory 
                             { Title = "Pencil", Description = "A Pencil" });
-                context.ProductCategories.AddOrUpdate(new ProductCategory 
+                context.ProductCategories.Add(new ProductCategory 
                             { Title = "Color Pen", Description = "A Colored Pen" });
-                context.ProductCategories.AddOrUpdate(new ProductCategory 
+                context.ProductCategories.Add(new ProductCategory 
                             { Title = "Rubbed Eraser", Description = "A Rubbed Eraser" });
                 context.SaveChanges();
             }

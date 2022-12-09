@@ -40,15 +40,15 @@
                 "dbo.CustomerProducts",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false),
                         Description = c.String(),
                         Price = c.Double(nullable: false),
-                        ProductCategoryId = c.Int(nullable: false),
+                        Category_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ProductCategories", t => t.ProductCategoryId)
-                .Index(t => t.Id);
+                .ForeignKey("dbo.ProductCategories", t => t.Category_Id, cascadeDelete: true)
+                .Index(t => t.Category_Id);
             
             CreateTable(
                 "dbo.ProductCategories",
@@ -76,9 +76,9 @@
         public override void Down()
         {
             DropForeignKey("dbo.CustomerOrders", "Product_Id", "dbo.CustomerProducts");
-            DropForeignKey("dbo.CustomerProducts", "Id", "dbo.ProductCategories");
+            DropForeignKey("dbo.CustomerProducts", "Category_Id", "dbo.ProductCategories");
             DropForeignKey("dbo.CustomerOrders", "Customer_Id", "dbo.Customers");
-            DropIndex("dbo.CustomerProducts", new[] { "Id" });
+            DropIndex("dbo.CustomerProducts", new[] { "Category_Id" });
             DropIndex("dbo.CustomerOrders", new[] { "Product_Id" });
             DropIndex("dbo.CustomerOrders", new[] { "Customer_Id" });
             DropTable("dbo.SomeTables");
