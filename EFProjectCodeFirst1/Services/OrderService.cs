@@ -14,7 +14,7 @@ namespace EFProjectCodeFirst1.Services
     internal class OrderService<T> : IOrderService<T>
     {
 
-        public Order AddSingleProductOrder(AppDBContext context, Customer customer, Product product)
+        public T AddSingleProductOrder(AppDBContext context, Customer customer, Product product)
         {
             
             var finalProductPrice = product.Price + 22;
@@ -32,7 +32,7 @@ namespace EFProjectCodeFirst1.Services
             return insertedOrder;
         }
 
-        public OrderMultiple AddMultipleProductsOrder(AppDBContext context, Customer customer, List<ProductData> products) 
+        public T AddMultipleProductsOrder(AppDBContext context, Customer customer, List<ProductData> products) 
         {
             var insertedOrder = context.OrderMultiples.Add(new Models.OrderMultiple
             {

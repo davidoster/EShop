@@ -82,7 +82,7 @@ namespace EFProjectCodeFirst1
             AddProductData ProductDataSum = AddData;
             ProductDataSum = AddData2;
 
-            OrderService orderService = new OrderService();
+            OrderService<OrderMultiple> orderService = new OrderService<OrderMultiple>();
             orderService.AddMultipleProductsOrder(appDBContext, customerGeorge, listOfProductData);
             //appDBContext.OrderMultiples.Add(new Models.OrderMultiple
             //{
