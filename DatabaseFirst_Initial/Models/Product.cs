@@ -17,12 +17,13 @@ namespace DatabaseFirst_Initial.Models
         [Required]
         public string Title { get; set; }
         public string Description { get; set; }
+        [Required]
         public double Price { get; set; }
 
         [Required]
-        [ForeignKey("Id")]
+        //[ForeignKey("Id")]
         public ProductCategory Category { get; set; } // FK // ONE ProductCategory TO MANY Product (s)
-        public int ProductCategoryId { get; set; } // DON'T DO THIS for EF!!!!
+        //public int ProductCategoryId { get; set; } // DON'T DO THIS for EF!!!!
 
         public Product()
         {
