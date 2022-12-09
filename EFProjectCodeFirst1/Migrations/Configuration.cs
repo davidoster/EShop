@@ -35,8 +35,7 @@
                 
                 // Add
                 context.ProductCategories.Add(new ProductCategory
-                { Title = "Pen", Description = "A Pen" });
-                
+                            { Title = "Pen", Description = "A Pen" });
                 context.ProductCategories.Add(new ProductCategory 
                             { Title = "Pencil", Description = "A Pencil" });
                 context.ProductCategories.Add(new ProductCategory 
@@ -63,7 +62,7 @@
                         Description = "Awesome Pen description",
                         Price = 28,
                         Category = pCategory,
-                        ProductCategoryId = pCategory.Id
+                        //ProductCategoryId = pCategory.Id
                     });
 
                     pCategory = context.ProductCategories.Where(productCategory => productCategory.Title == "Pencil")
@@ -74,7 +73,7 @@
                         Description = "Awesome Pencil description",
                         Price = 20,
                         Category = pCategory,
-                        ProductCategoryId = pCategory.Id
+                        //ProductCategoryId = pCategory.Id
                     });
 
                     pCategory = context.ProductCategories.Where(productCategory => productCategory.Title == "Color Pen")
@@ -85,7 +84,7 @@
                         Description = "Awesome Color Pen description",
                         Price = 32,
                         Category = pCategory,
-                        ProductCategoryId = pCategory.Id
+                        //ProductCategoryId = pCategory.Id
                     });
 
                     pCategory = context.ProductCategories.Where(productCategory => productCategory.Title == "Rubbed Eraser")
@@ -96,7 +95,7 @@
                         Description = "Awesome Rubbed Eraser description",
                         Price = 9,
                         Category = pCategory,
-                        ProductCategoryId = pCategory.Id
+                        //ProductCategoryId = pCategory.Id
                     });
                 }
                 context.SaveChanges();
@@ -114,25 +113,30 @@
             // Add some Customers
             try
             {
-                context.Customers.AddOrUpdate(new Customer
+                if (context.Customers.Where(c => c.Email == "paspa@hotmail.com").Count() == 0 &&
+                    context.Customers.Where(c => c.Email == "paspabill@hotmail.com").Count() == 0)
                 {
-                    Name = "George Pasparakis",
-                    Email = "paspa@hotmail.com",
-                    PhoneNumber = "+306977649229"
-                });
+                    context.Customers.AddOrUpdate(new Customer
+                    {
+                        Name = "George Pasparakis",
+                        Email = "paspa@hotmail.com",
+                        PhoneNumber = "+306977649229"
+                    });
 
-                context.Customers.AddOrUpdate(new Customer
-                {
-                    Name = "Bill Pasparakis",
-                    Email = "paspabill@hotmail.com",
-                    PhoneNumber = "+306978649229"
-                });
-                context.SaveChanges();
+                    context.Customers.AddOrUpdate(new Customer
+                    {
+                        Name = "Bill Pasparakis",
+                        Email = "paspabill@hotmail.com",
+                        PhoneNumber = "+306978649229"
+                    });
+                    context.SaveChanges();
+                }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Console.WriteLine("Already existed Customers");
-                Console.WriteLine(e.InnerException.InnerException.Message);
+                Console.WriteLine(e.Message);
+                //Console.WriteLine("Already existed Customers");
+                //Console.WriteLine(e.InnerException.InnerException.Message);
             }
             finally
             {

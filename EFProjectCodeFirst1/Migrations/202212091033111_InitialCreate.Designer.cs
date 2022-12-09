@@ -13,7 +13,7 @@ namespace EFProjectCodeFirst1.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202212090824245_InitialCreate"; }
+            get { return "202212091033111_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
