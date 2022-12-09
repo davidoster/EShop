@@ -44,10 +44,10 @@
                         Title = c.String(nullable: false),
                         Description = c.String(),
                         Price = c.Double(nullable: false),
-                        ProductCategoryId = c.Int(nullable: false),
+                        //ProductCategoryId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ProductCategories", t => t.ProductCategoryId)
+                //.ForeignKey("dbo.ProductCategories", t => t.ProductCategoryId)
                 .Index(t => t.Id);
             
             CreateTable(

@@ -61,6 +61,14 @@
     <Compile Include="Migrations\202212080514556_CustomerOrdersMultiple.designer.cs">
       <DependentUpon>202212080514556_CustomerOrdersMultiple.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212091402232_ChangesToProduct.cs" />
+    <Compile Include="Migrations\202212091402232_ChangesToProduct.designer.cs">
+      <DependentUpon>202212091402232_ChangesToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212091413286_ChangesToProduct1.cs" />
+    <Compile Include="Migrations\202212091413286_ChangesToProduct1.designer.cs">
+      <DependentUpon>202212091413286_ChangesToProduct1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\OrderMultiple.cs" />
@@ -89,6 +97,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212080514556_CustomerOrdersMultiple.resx">
       <DependentUpon>202212080514556_CustomerOrdersMultiple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212091402232_ChangesToProduct.resx">
+      <DependentUpon>202212091402232_ChangesToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212091413286_ChangesToProduct1.resx">
+      <DependentUpon>202212091413286_ChangesToProduct1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -56,7 +56,7 @@
                         Description = "Awesome Pen description",
                         Price = 28,
                         Category = pCategory,
-                        ProductCategoryId = pCategory.Id
+                        //ProductCategoryId = pCategory.Id
                     });
 
                     pCategory = context.ProductCategories.Where(productCategory => productCategory.Title == "Pencil")
@@ -67,7 +67,7 @@
                         Description = "Awesome Pencil description",
                         Price = 20,
                         Category = pCategory,
-                        ProductCategoryId = pCategory.Id
+                        //ProductCategoryId = pCategory.Id
                     });
 
                     pCategory = context.ProductCategories.Where(productCategory => productCategory.Title == "Color Pen")
@@ -78,7 +78,7 @@
                         Description = "Awesome Color Pen description",
                         Price = 32,
                         Category = pCategory,
-                        ProductCategoryId = pCategory.Id
+                        //ProductCategoryId = pCategory.Id
                     });
 
                     pCategory = context.ProductCategories.Where(productCategory => productCategory.Title == "Rubbed Eraser")
@@ -89,7 +89,7 @@
                         Description = "Awesome Rubbed Eraser description",
                         Price = 9,
                         Category = pCategory,
-                        ProductCategoryId = pCategory.Id
+                        //ProductCategoryId = pCategory.Id
                     });
                 }
                 context.SaveChanges();
