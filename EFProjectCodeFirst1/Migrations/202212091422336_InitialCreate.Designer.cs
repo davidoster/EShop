@@ -7,13 +7,13 @@ namespace EFProjectCodeFirst1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ChangesToProduct : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangesToProduct));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202212091402232_ChangesToProduct"; }
+            get { return "202212091422336_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

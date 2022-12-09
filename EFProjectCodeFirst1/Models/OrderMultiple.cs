@@ -21,6 +21,7 @@ namespace EFProjectCodeFirst1.Models
         public Customer Customer { get; set; } 
     }
 
+    [Table("CustomerOrdersDetails")]
     internal class ProductData
     {
         public int Id { get; set; }
