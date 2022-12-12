@@ -82,9 +82,8 @@ namespace EFProjectCodeFirst1
             AddProductData ProductDataSum = AddData;
             ProductDataSum = AddData2;
 
-            OrderService<OrderMultiple> orderService = new OrderService<OrderMultiple>();
-            orderService.AddOrder<OrderMultiple>();
-            orderService.AddMultipleProductsOrder(appDBContext, customerGeorge, listOfProductData);
+            //OrderService orderService1 = new OrderService();
+            //orderService1.AddMultipleProductsOrder(appDBContext, customerGeorge, listOfProductData); // Order Service without Generics
             //appDBContext.OrderMultiples.Add(new Models.OrderMultiple
             //{
             //    Customer = customerGeorge,
@@ -94,6 +93,22 @@ namespace EFProjectCodeFirst1
             //    //TotalPrice = listOfProductData.Sum(x => ProductDataSum(x))  // 180 + 63 // (15 * 12) + (9 * 7)
             //});
             //appDBContext.SaveChanges();
+
+            var productCategory = appDBContext.ProductCategories.Find(3); // Color Pen
+            //OrderService<Order> orderServiceSingle = new OrderService<Order>();
+            //orderServiceSingle.AddOrder(appDBContext, customerGeorge, 
+            //    new Product("Yellow Parker", "Yellow Parker Description", 19.22, productCategory));
+
+            //listOfProductData = new List<ProductData>();
+            //listOfProductData.Add(new ProductData { Price = 32, Quantity = 5, Product = productPen });
+            //listOfProductData.Add(new ProductData { Price = 40, Quantity = 9, Product = productPen });
+            OrderService<OrderMultiple> orderServiceMultiple = new OrderService<OrderMultiple>();
+            //orderServiceMultiple.AddOrder(appDBContext, customerGeorge, listOfProductData);
+
+            listOfProductData = new List<ProductData>();
+            listOfProductData.Add(new ProductData { Price = 32, Quantity = 5, Product = new Product("Pink Parker", "Pink Parker Description", 22.22, productCategory) });
+            listOfProductData.Add(new ProductData { Price = 40, Quantity = 9, Product = new Product("Fuchsia Parker", "Fuchsia Parker Description", 23.22, productCategory) });
+            orderServiceMultiple.AddOrder(appDBContext, customerGeorge, listOfProductData);
 
             Console.ReadKey();
         }

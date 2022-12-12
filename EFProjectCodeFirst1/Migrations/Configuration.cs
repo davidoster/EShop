@@ -147,10 +147,10 @@
             var productPencil = context.Products.Where(p => p.Title == "Awesome Pencil").SingleOrDefault();
 
             // Add the sample Orders for these customers
-            OrderService orderService = new OrderService();
+            //OrderService orderService = new OrderService();
             var finalProductPrice = productPen.Price + 22;
             var finalProductQuantity = 4;
-            orderService.AddSingleProductOrder(context, customerGeorge, productPen);
+            //orderService.AddSingleProductOrder(context, customerGeorge, productPen);
             //context.CustomerOrders.AddOrUpdate(new Order
             //{
             //    Customer = customerGeorge,
@@ -163,7 +163,7 @@
             
             finalProductPrice = productPencil.Price + 22;
             finalProductQuantity = 4;
-            orderService.AddSingleProductOrder(context, customerBill, productPencil);
+            //orderService.AddSingleProductOrder(context, customerBill, productPencil);
             //context.CustomerOrders.AddOrUpdate(new Order
             //{
             //    Customer = customerBill,
