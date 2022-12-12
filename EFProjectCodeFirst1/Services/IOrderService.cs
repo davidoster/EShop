@@ -7,9 +7,8 @@ namespace EFProjectCodeFirst1.Services
 {
     internal interface IOrderService<T> where T : class
     {
-        T AddOrder(AppDBContext context, Customer customer, Product product);
-
-        T AddOrder(AppDBContext context, Customer customer, List<ProductData> products);
-
+        AppDBContext context { get; set; }
+        T AddOrder(Customer customer, Product product);
+        T AddOrder(Customer customer, List<ProductData> products);
     }
 }

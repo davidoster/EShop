@@ -17,7 +17,7 @@ namespace EFProjectCodeFirst1
         delegate double AddProductData(ProductData productData);
         static void Main(string[] args)
         {
-            AppDBContext appDBContext = new AppDBContext();
+            //AppDBContext appDBContext = new AppDBContext();
             //appDBContext.ProductCategories.Add(new ProductCategory { Title = "Pen", Description = "A Pen" });
             //appDBContext.ProductCategories.Add(new ProductCategory { Title = "Pencil", Description = "A Pencil" });
             //appDBContext.ProductCategories.Add(new ProductCategory { Title = "Color Pen", Description = "A Colored Pen" });
@@ -65,22 +65,22 @@ namespace EFProjectCodeFirst1
             //Console.WriteLine(pCA == pCB);
 
 
-            var productPen = appDBContext.Products.Where(p => p.Title == "Awesome Pen").SingleOrDefault();
-            appDBContext.Entry(productPen).Reference(p => p.Category).Load();
-            Console.WriteLine(productPen.Category.Id);
-            var productPencil = appDBContext.Products.Where(p => p.Title == "Awesome Pencil").SingleOrDefault();
-            appDBContext.Entry(productPencil).Reference(p => p.Category).Load();
-            Console.WriteLine(productPencil.Category.Id);
+            //var productPen = appDBContext.Products.Where(p => p.Title == "Awesome Pen").SingleOrDefault();
+            //appDBContext.Entry(productPen).Reference(p => p.Category).Load();
+            //Console.WriteLine(productPen.Category.Id);
+            //var productPencil = appDBContext.Products.Where(p => p.Title == "Awesome Pencil").SingleOrDefault();
+            //appDBContext.Entry(productPencil).Reference(p => p.Category).Load();
+            //Console.WriteLine(productPencil.Category.Id);
 
-            var customerGeorge = appDBContext.Customers.Where(c => c.Email.Contains("paspa@hotmail.com")).SingleOrDefault();
-            var listOfProductData = new List<ProductData>();
-            listOfProductData.Add(new ProductData { Price = 15, Quantity = 12, Product = productPen });
-            listOfProductData.Add(new ProductData { Price = 9, Quantity = 7, Product = productPencil });
+            //var customerGeorge = appDBContext.Customers.Where(c => c.Email.Contains("paspa@hotmail.com")).SingleOrDefault();
+            //var listOfProductData = new List<ProductData>();
+            //listOfProductData.Add(new ProductData { Price = 15, Quantity = 12, Product = productPen });
+            //listOfProductData.Add(new ProductData { Price = 9, Quantity = 7, Product = productPencil });
 
-            double AddData(ProductData pData) { return pData.Price * pData.Quantity; }
-            double AddData2(ProductData pData) { return (pData.Price * pData.Quantity) * 0.25; }
-            AddProductData ProductDataSum = AddData;
-            ProductDataSum = AddData2;
+            //double AddData(ProductData pData) { return pData.Price * pData.Quantity; }
+            //double AddData2(ProductData pData) { return (pData.Price * pData.Quantity) * 0.25; }
+            //AddProductData ProductDataSum = AddData;
+            //ProductDataSum = AddData2;
 
             //OrderService orderService1 = new OrderService();
             //orderService1.AddMultipleProductsOrder(appDBContext, customerGeorge, listOfProductData); // Order Service without Generics
@@ -94,7 +94,7 @@ namespace EFProjectCodeFirst1
             //});
             //appDBContext.SaveChanges();
 
-            var productCategory = appDBContext.ProductCategories.Find(3); // Color Pen
+            //var productCategory = appDBContext.ProductCategories.Find(3); // Color Pen
             //OrderService<Order> orderServiceSingle = new OrderService<Order>();
             //orderServiceSingle.AddOrder(appDBContext, customerGeorge, 
             //    new Product("Yellow Parker", "Yellow Parker Description", 19.22, productCategory));
@@ -102,13 +102,21 @@ namespace EFProjectCodeFirst1
             //listOfProductData = new List<ProductData>();
             //listOfProductData.Add(new ProductData { Price = 32, Quantity = 5, Product = productPen });
             //listOfProductData.Add(new ProductData { Price = 40, Quantity = 9, Product = productPen });
-            OrderService<OrderMultiple> orderServiceMultiple = new OrderService<OrderMultiple>();
+            try
+            {
+                OrderService<OrderMultiple> orderServiceMultiple = new OrderService<OrderMultiple>();
+                var listOfProductData = new List<ProductData>();
+                listOfProductData.Add(new ProductData { Price = 32, Quantity = 5, Product = new Product("Pink Parker", "Pink Parker Description", 22.22, orderServiceMultiple.context.ProductCategories.Find(3)) });
+                listOfProductData.Add(new ProductData { Price = 40, Quantity = 9, Product = new Product("Fuchsia Parker", "Fuchsia Parker Description", 23.22, orderServiceMultiple.context.ProductCategories.Find(3)) });
+                orderServiceMultiple.AddOrder(orderServiceMultiple.context.Customers.Find(1), listOfProductData);
+            }
+            catch (DBServerConnectionErrorException e)
+            {
+                Console.WriteLine(e.Message);
+            }
             //orderServiceMultiple.AddOrder(appDBContext, customerGeorge, listOfProductData);
 
-            listOfProductData = new List<ProductData>();
-            listOfProductData.Add(new ProductData { Price = 32, Quantity = 5, Product = new Product("Pink Parker", "Pink Parker Description", 22.22, productCategory) });
-            listOfProductData.Add(new ProductData { Price = 40, Quantity = 9, Product = new Product("Fuchsia Parker", "Fuchsia Parker Description", 23.22, productCategory) });
-            orderServiceMultiple.AddOrder(appDBContext, customerGeorge, listOfProductData);
+            
 
             Console.ReadKey();
         }
