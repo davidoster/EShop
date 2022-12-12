@@ -108,7 +108,9 @@ namespace EFProjectCodeFirst1
                 var listOfProductData = new List<ProductData>();
                 listOfProductData.Add(new ProductData { Price = 32, Quantity = 5, Product = new Product("Pink Parker", "Pink Parker Description", 22.22, orderServiceMultiple.context.ProductCategories.Find(3)) });
                 listOfProductData.Add(new ProductData { Price = 40, Quantity = 9, Product = new Product("Fuchsia Parker", "Fuchsia Parker Description", 23.22, orderServiceMultiple.context.ProductCategories.Find(3)) });
-                orderServiceMultiple.AddOrder(orderServiceMultiple.context.Customers.Find(1), listOfProductData);
+                var orderMultiple = orderServiceMultiple.AddOrder(orderServiceMultiple.context.Customers.Find(1), listOfProductData);
+                var customer = orderServiceMultiple.context.Customers.Find(2);
+                orderServiceMultiple.UpdateOrder(orderMultiple.CustomerOrderId, customer); // this UpdateOrder changes the Customer of the order
             }
             catch (DBServerConnectionErrorException e)
             {

@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,6 @@ namespace EFProjectCodeFirst1.Services
             get => _context; 
             set => _context = value; 
         }
-
         public OrderService()
         {
             // if the db server is up and running only then create AppDBContext and create an OrderService 
@@ -66,7 +66,6 @@ namespace EFProjectCodeFirst1.Services
             context.SaveChanges();
             return insertedOrder as T;
         }
-
         public T AddOrder(Customer customer, List<ProductData> products)
         {
             var insertedOrder = context.OrderMultiples.Add(new OrderMultiple
@@ -79,6 +78,44 @@ namespace EFProjectCodeFirst1.Services
             });
             context.SaveChanges();
             return insertedOrder as T;
+        }
+        public T UpdateOrder(int id, Customer customer) // UpdateOrderMultiple
+        {
+            var order = context.OrderMultiples.Find(id);
+            order.Customer = customer;
+            var numberOfOrdersChanged = context.SaveChanges();
+            if(numberOfOrdersChanged == 1) 
+            {
+                return order as T;
+            }
+            return null;
+        }
+        public T UpdateOrder(int id, Customer customer, Product product, int quantity)
+        {
+            var order = context.CustomerOrders.Find(id);
+            order.Customer = customer;
+            order.Product = product;
+            order.ProductPrice = product.Price;
+            order.ProductQuantity = quantity;
+            var numberOfOrdersChanged = context.SaveChanges();
+            if (numberOfOrdersChanged == 1)
+            {
+                return order as T;
+            }
+            return null;
+        }
+        public T UpdateOrder(int id, Customer customer, List<ProductData> products) // UpdateOrderMultiple
+        {
+            var order = context.OrderMultiples.Find(id);
+            order.Customer = customer;
+            order.ProductData = products;
+            order.TotalPrice = products.Sum(x => x.Price * x.Quantity);
+            var numberOfOrdersChanged = context.SaveChanges();
+            if (numberOfOrdersChanged == 1)
+            {
+                return order as T;
+            }
+            return null;
         }
     }
 }
